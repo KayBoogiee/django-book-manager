@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Form</title>
+</head>
+<body>
+    <h1>{{ book.id|default:"Add New Book" }}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Title:</label><br>
+        <input type="text" name="title" value="{{ book.title|default:'' }}" required><br><br>
+
+        <label>Author:</label><br>
+        <input type="text" name="author" value="{{ book.author|default:'' }}" required><br><br>
+
+        <label>Description:</label><br>
+        <textarea name="description" required>{{ book.description|default:'' }}</textarea><br><br>
+
+        <label>Published Year:</label><br>
+        <input type="number" name="published_year" value="{{ book.published_year|default:'' }}" required><br><br>
+
+        <button type="submit">Save</button>
+    </form>
+
+    <br>
+    <a href="{% url 'book_list' %}">Back</a>
+</body>
+</html>
